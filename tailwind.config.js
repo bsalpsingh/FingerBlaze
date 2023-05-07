@@ -22,6 +22,7 @@ module.exports = {
         pastel: "#FFFBF5",
         light: "#F7F1EB",
         pastelBlue: "#ECF2FF",
+        foo:"#ffffff"
       },
     },
   },

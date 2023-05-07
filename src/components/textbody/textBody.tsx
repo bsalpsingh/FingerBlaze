@@ -6,8 +6,8 @@ interface Props {
 }
 
 const phrase: string =
-  "Maycomb was an old town, but it was a tired old town when I.";
-  
+  "I,ve written a few thousand words on why traditional semantic class names are the reason CSS is hard to maintain, but the truth is you're never going to believe me until you actually try it. If you can suppress the urge to retch long enough to give it a chance, I really think you'll wonder how you ever worked with CSS any other way.";
+
 export const TextBody = (props: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [typo, setTypo] = React.useState<boolean>(false);
@@ -24,6 +24,7 @@ export const TextBody = (props: Props) => {
     }
   });
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    console.log("event ",event.key)
     if (rightCount >= phrase.length) {
       return;
     }
@@ -34,7 +35,7 @@ export const TextBody = (props: Props) => {
       setStartTime(new Date());
     }
     setEndTime(new Date());
-
+console.log("phrase and key",phrase[rightCount]===event.key,phrase[rightCount],event.key)
     if (phrase[rightCount] === event.key) {
       setRightCount(rightCount + 1);
       setWrongCount(0);
@@ -72,19 +73,14 @@ export const TextBody = (props: Props) => {
 
   return (
     <>
-      {!!rightCount && (
-        <div className="text-4xl text-red-600 text-center">
-          Speed : {getRate()?.toFixed(0) || "-"} CPS ~{" "}
-          {Math.ceil(((getRate() || 0) / 5.5) * 60)} WPM
-        </div>
-      )}
+    
       <div
         onKeyDown={handleKeyDown}
-        className="container mx-auto  p-8  h-auto border-2 border-rose-400 rounded-4xl "
+        className="container mx-auto  p-8  h-auto border-2 border-rose-400 rounded-xl  "
       >
         <input ref={inputRef} autoFocus className="opacity-0 w-0 h-0" />
         <div>
-          <div className="text-4xl  inline">
+          <div className="text-4xl font-light  inline ">
             <span className=" text-red-500 ">
               {phrase.substring(0, rightCount)}
             </span>
@@ -104,6 +100,12 @@ export const TextBody = (props: Props) => {
           </div>
         </div>
       </div>
+      {!!rightCount && (
+        <div className="text-4xl text-red-600 my-24 text-center">
+          Speed : {getRate()?.toFixed(0) || "-"} CPS ~{" "}
+          {Math.ceil(((getRate() || 0) / 5.5) * 60)} WPM
+        </div>
+      )}
     </>
   );
 };
