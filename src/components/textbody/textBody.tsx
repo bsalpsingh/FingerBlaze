@@ -10,7 +10,6 @@ const phrase: string =
 
 export const TextBody = (props: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [typo, setTypo] = React.useState<boolean>(false);
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [endTime, setEndTime] = useState<Date | null>(null);
   const allowedKeys = /[a-zA-Z0-9.!?]/;
@@ -42,7 +41,6 @@ console.log("phrase and key",phrase[rightCount]===event.key,phrase[rightCount],e
     } else if (event.code === "Backspace") {
       if (wrongCount) {
         if (wrongCount === 0) {
-          setTypo(false);
           return;
         }
         setWrongCount(wrongCount - 1);
@@ -54,7 +52,7 @@ console.log("phrase and key",phrase[rightCount]===event.key,phrase[rightCount],e
         allowedKeys.test(event.key) ||
         [" ", ".", ",", ":", ";"].includes(event.key)
       ) {
-        setTypo(true);
+
         if (!rightCount) return;
         setWrongCount(wrongCount + 1);
       }
