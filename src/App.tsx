@@ -5,7 +5,7 @@ import { TextBody } from "./components/textbody/textBody";
 
 function App() {
   return (
-    <div className="min-h-screen bg-pastel flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
       <div className="flex-1 my-10 flex flex-col justify-start">
         <TextBody />
