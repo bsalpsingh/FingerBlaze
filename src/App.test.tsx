@@ -4,6 +4,10 @@ import App from './App';
 
 test('renders learn react link', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+  const linkElement = screen.getByText("FingerBlaze");
   expect(linkElement).toBeInTheDocument();
 });
+
+test("An aribratory test",()=>{
+  expect(1).toBe(1)
+})
